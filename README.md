@@ -124,11 +124,31 @@ All infrastructure is provisioned via idempotent PowerShell/CLI scripts driven b
 # 4. Build frontend + deploy API to App Service
 ./deploy/deploy-api.ps1
 
-# 5. Provision Fabric lakehouses and notebooks
+# 5. Provision Fabric lakehouses, folders, and notebooks
 ./deploy/deploy-fabric.ps1
 ```
 
 See [deploy/README.md](deploy/README.md) for detailed deployment instructions.
+
+### Fabric Workspace Structure
+
+When deployed, the Fabric workspace contains:
+
+```
+data/
+  lh_spend_landing             ← raw Cosmos snapshots
+  lh_spend_bronze              ← normalized, deduplicated
+  lh_spend_silver              ← enriched with classification + anomalies
+  lh_spend_gold                ← spend analytics, trends, aggregations
+notebooks/
+  main/
+    01_ingest_landing
+    02_transform_bronze
+    03_enrich_silver
+    04_aggregate_gold
+  modules/
+    helpers
+```
 
 ## Configuration
 
