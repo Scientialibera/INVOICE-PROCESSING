@@ -1,0 +1,137 @@
+# ──────────────────────────────────────────────────────────────────
+# Spend Analyzer -- Deployment Configuration
+# All resource names are derived from [naming].prefix when left empty.
+# ──────────────────────────────────────────────────────────────────
+
+[azure]
+subscription_id   = ""                   # empty = use current az login context
+location          = "eastus2"
+resource_group_name = ""                 # empty = rg-<prefix>
+
+[naming]
+prefix                    = "spendanalyzer"
+function_app_name         = ""           # empty = func-<prefix>
+app_service_name          = ""           # empty = api-<prefix>
+storage_account_name      = ""           # empty = st<prefix> (alphanumeric, max 24)
+servicebus_namespace_name = ""           # empty = sbns-<prefix>
+openai_account_name       = ""           # empty = aoai-<prefix>
+docintel_account_name     = ""           # empty = doci-<prefix>
+cosmos_account_name       = ""           # empty = cosmos-<prefix>
+search_service_name       = ""           # empty = search-<prefix>
+
+# ── Storage ──────────────────────────────────────────────────────
+
+[storage]
+uploads_container_name            = "uploads"
+prompts_container_name            = "prompts"
+function_definitions_container_name = "function-definitions"
+schemas_container_name            = "schemas"
+
+# ── Service Bus ──────────────────────────────────────────────────
+
+[queues]
+process_queue_name = "q-invoice-process"
+
+# ── Cosmos DB ────────────────────────────────────────────────────
+
+[cosmos]
+database_name             = "spend"
+invoices_container_name   = "invoices"
+invoices_partition_key    = "/user_id"
+sessions_container_name   = "user_sessions"
+sessions_partition_key    = "/user_id"
+
+# ── AI Search ────────────────────────────────────────────────────
+
+[search]
+index_name       = "invoice-content-index"
+sku              = "basic"
+use_embeddings   = true
+
+# ── Azure OpenAI ─────────────────────────────────────────────────
+
+[openai]
+deploy_openai_resources = true
+deployment_name         = "gpt-5-mini"
+model_name              = "gpt-5-mini"
+model_version           = ""
+deployment_sku_name     = "GlobalStandard"
+capacity                = 50
+
+embedding_deployment_name = "text-embedding-3-large"
+embedding_model_name      = "text-embedding-3-large"
+embedding_model_version   = ""
+embedding_sku_name        = "GlobalStandard"
+embedding_capacity        = 50
+
+api_version             = "2025-01-01-preview"
+
+# ── Document Intelligence ────────────────────────────────────────
+
+[docintel]
+deploy_docintel_resources = true
+sku_name                  = "S0"
+
+# ── Entra ID / Auth ─────────────────────────────────────────────
+
+[entra]
+tenant_id       = ""
+api_client_id   = ""                    # App registration for token validation
+spa_client_id   = ""                    # App registration for frontend MSAL
+
+# ── App Service ──────────────────────────────────────────────────
+
+[app_service]
+plan_sku        = "B1"
+runtime         = "PYTHON:3.11"
+
+# ── Agent Configuration ──────────────────────────────────────────
+
+[agent]
+name                    = "SpendAnalyzer"
+system_prompt_blob      = "assistant/system_prompt_v1.txt"
+enable_code_interpreter = true
+
+# Add MCP servers below. Each entry becomes a hosted MCP tool.
+# [agent.mcp_servers.example]
+# url = "https://your-mcp-endpoint/mcp/"
+# approval_mode = "never_require"
+
+# ── Mailbox (Logic App) ─────────────────────────────────────────
+
+[mailbox]
+target_shared_mailbox              = ""
+logic_app_connector_identity_upn   = ""
+
+# ── Prompts (blob paths) ────────────────────────────────────────
+
+[prompts]
+assistant_system_prompt     = "assistant/system_prompt_v1.txt"
+classification_prompt       = "classification/classify_invoice_v1.txt"
+
+# ── Function Definitions (blob paths) ───────────────────────────
+
+[function_definitions]
+classification_func_def = "classification/classify_invoice_v1.json"
+
+# ── Processing Settings ─────────────────────────────────────────
+
+[app_settings]
+active_model_profile              = "default"
+confidence_threshold_required     = "0.90"
+
+# ── Fabric ───────────────────────────────────────────────────────
+
+[fabric]
+workspace_id         = ""
+landing_lakehouse    = "lh_spend_landing"
+bronze_lakehouse     = "lh_spend_bronze"
+silver_lakehouse     = "lh_spend_silver"
+gold_lakehouse       = "lh_spend_gold"
+
+# ── Paths (local asset paths for seeding) ────────────────────────
+
+[paths]
+assistant_prompt_source         = "deploy/assets/prompts/assistant/system_prompt_v1.txt"
+classification_prompt_source    = "deploy/assets/prompts/classification/classify_invoice_v1.txt"
+classification_func_def_source  = "deploy/assets/function_definitions/classification/classify_invoice_v1.json"
