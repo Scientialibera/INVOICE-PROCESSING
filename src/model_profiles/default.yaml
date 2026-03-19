@@ -1,0 +1,4 @@
+profile_name: default
+classification_model: "${AOAI_DEPLOYMENT}"
+temperature: 0.1
+max_completion_tokens: 2000

@@ -1,0 +1,19 @@
+{
+  "name": "classify_invoice",
+  "description": "Classify an invoice by spend category and flag any anomalies.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "spend_category": {
+        "type": "string",
+        "enum": ["IT", "Marketing", "Facilities", "Travel", "HR", "Legal", "Consulting", "Supplies", "Utilities", "Other"]
+      },
+      "subcategory": { "type": "string" },
+      "is_likely_duplicate": { "type": "boolean" },
+      "anomaly_flags": { "type": "array", "items": { "type": "string" } },
+      "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+      "reasoning": { "type": "string" }
+    },
+    "required": ["spend_category", "subcategory", "is_likely_duplicate", "anomaly_flags", "confidence", "reasoning"]
+  }
+}
