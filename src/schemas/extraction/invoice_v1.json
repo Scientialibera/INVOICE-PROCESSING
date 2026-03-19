@@ -1,0 +1,28 @@
+{
+  "description": "Expected fields from Document Intelligence prebuilt-invoice extraction.",
+  "fields": {
+    "VendorName": { "type": "string", "required": true },
+    "VendorAddress": { "type": "string" },
+    "CustomerName": { "type": "string" },
+    "CustomerAddress": { "type": "string" },
+    "InvoiceId": { "type": "string", "required": true },
+    "InvoiceDate": { "type": "date" },
+    "DueDate": { "type": "date" },
+    "PurchaseOrder": { "type": "string" },
+    "InvoiceTotal": { "type": "currency", "required": true },
+    "SubTotal": { "type": "currency" },
+    "TotalTax": { "type": "currency" },
+    "Items": {
+      "type": "array",
+      "item_fields": {
+        "Description": { "type": "string" },
+        "Quantity": { "type": "number" },
+        "UnitPrice": { "type": "currency" },
+        "Amount": { "type": "currency" },
+        "Unit": { "type": "string" },
+        "ProductCode": { "type": "string" },
+        "Tax": { "type": "currency" }
+      }
+    }
+  }
+}
