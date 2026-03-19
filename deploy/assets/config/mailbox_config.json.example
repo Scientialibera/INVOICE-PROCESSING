@@ -1,0 +1,8 @@
+{
+  "shared_mailbox": "invoices@yourcompany.com",
+  "logic_app_connector_identity": "svc-logicapp@yourcompany.com",
+  "allowed_senders": [],
+  "blocked_senders": [],
+  "allowed_attachment_types": [".pdf", ".png", ".jpg", ".jpeg", ".tiff"],
+  "max_attachment_size_mb": 25
+}
