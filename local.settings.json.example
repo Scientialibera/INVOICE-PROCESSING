@@ -1,0 +1,27 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "STORAGE_ACCOUNT_NAME": "",
+    "UPLOADS_CONTAINER_NAME": "uploads",
+    "PROMPTS_CONTAINER_NAME": "prompts",
+    "FUNCTION_DEFINITIONS_CONTAINER_NAME": "function-definitions",
+    "SERVICEBUS_CONNECTION__fullyQualifiedNamespace": "",
+    "SERVICEBUS_QUEUE_NAME": "q-invoice-process",
+    "COSMOS_ENDPOINT": "",
+    "COSMOS_DATABASE_NAME": "spend",
+    "COSMOS_INVOICES_CONTAINER": "invoices",
+    "AOAI_ENDPOINT": "",
+    "AOAI_DEPLOYMENT": "",
+    "AOAI_DEPLOYMENT_EMBEDDING": "",
+    "AOAI_API_VERSION": "2025-01-01-preview",
+    "DOCINTEL_ENDPOINT": "",
+    "SEARCH_ENDPOINT": "",
+    "SEARCH_INDEX": "invoice-content-index",
+    "SEARCH_USE_EMBEDDINGS": "true",
+    "ACTIVE_MODEL_PROFILE": "default",
+    "CLASSIFICATION_PROMPT_BLOB_NAME": "classification/classify_invoice_v1.txt",
+    "CLASSIFICATION_FUNC_DEF_BLOB_NAME": "classification/classify_invoice_v1.json"
+  }
+}
