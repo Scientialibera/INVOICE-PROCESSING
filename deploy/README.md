@@ -41,6 +41,17 @@ Builds the React frontend (`npm run build`), copies the dist output into `api/st
 
 Creates Fabric workspace folders, lakehouses (Landing, Bronze, Silver, Gold), and uploads all notebooks.
 
+## Fabric Push Guardrails (Lessons Learned)
+
+Use this workflow for repeatable notebook pushes:
+
+1. Run from repo root with PowerShell 7:
+   - `pwsh ./deploy/deploy-fabric.ps1`
+2. Ensure `az login` is active and `deploy/deploy.config.toml` points to the intended workspace before running.
+3. Keep notebooks as source files in `deploy/assets/notebooks/`; do not treat workspace notebooks as source of truth.
+4. Push order should stay deterministic: deploy modules first, then main notebooks.
+5. If a push fails, correct config/source and rerun; avoid manual edits in Fabric UI that can drift from git.
+
 ## Configuration Reference
 
 See `deploy.config.toml` for all configurable values. Key sections are documented inline with comments.

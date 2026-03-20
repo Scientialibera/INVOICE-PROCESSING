@@ -162,6 +162,17 @@ All configuration lives in `deploy/deploy.config.toml`. Key sections:
 - `[mailbox]` -- shared mailbox and Logic App connector identity
 - `[fabric]` -- workspace, lakehouses, notebooks
 
+## Fabric Deployment Lessons Learned
+
+The Fabric deployment pattern below is the recommended baseline for this repo:
+
+- Run Fabric deploy from repo root with PowerShell 7: `pwsh ./deploy/deploy-fabric.ps1`
+- Treat deploy scripts as idempotent; prefer rerunning the same script over manual portal changes
+- Keep notebook edits in source folders under `deploy/assets/notebooks/` and push via script
+- Use stable execution order for notebook uploads: modules first, then main notebooks
+- Fail fast on missing Fabric prerequisites (`az login`, valid workspace in config, required lakehouse IDs/names)
+- When notebook push fails, fix source/config and rerun deploy instead of patching workspace artifacts manually
+
 ## Local Development
 
 ```bash
