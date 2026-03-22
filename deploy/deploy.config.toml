@@ -56,7 +56,7 @@ deployment_name         = "gpt-5-mini"
 model_name              = "gpt-5-mini"
 model_version           = ""
 deployment_sku_name     = "GlobalStandard"
-capacity                = 50
+capacity                = 500
 
 embedding_deployment_name = "text-embedding-3-large"
 embedding_model_name      = "text-embedding-3-large"
