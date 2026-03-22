@@ -83,7 +83,7 @@ spa_client_id   = ""                    # App registration for frontend MSAL
 
 [app_service]
 plan_sku        = "B1"
-runtime         = "PYTHON:3.11"
+runtime         = "PYTHON:3.13"
 
 # ── Agent Configuration ──────────────────────────────────────────
 

@@ -194,7 +194,7 @@ if (-not $funcExists) {
         --storage-account $storageAccountName `
         --flexconsumption-location $location `
         --runtime python `
-        --runtime-version 3.11 `
+        --runtime-version 3.13 `
         --functions-version 4 `
         --output none
 }

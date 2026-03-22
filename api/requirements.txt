@@ -1,4 +1,8 @@
-agent-framework --pre
+opentelemetry-api==1.39.1
+opentelemetry-sdk==1.39.1
+opentelemetry-semantic-conventions-ai==0.4.13
+--pre
+agent-framework==1.0.0b251223
 fastapi>=0.115.0
 uvicorn[standard]>=0.30.0
 azure-identity>=1.17.0

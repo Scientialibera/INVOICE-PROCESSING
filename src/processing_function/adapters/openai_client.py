@@ -46,11 +46,15 @@ class AzureOpenAIAdapter:
             "messages": messages,
             "tools": [tool],
             "tool_choice": {"type": "function", "function": {"name": tool_definition["name"]}},
-            "temperature": self._profile.get("temperature", 0.1),
         }
-        max_tokens = self._profile.get("max_completion_tokens")
-        if max_tokens:
-            body["max_completion_tokens"] = int(max_tokens)
+
+        if self._profile.get("reasoning_model", False):
+            body["reasoning_effort"] = self._profile.get("reasoning_effort", "medium")
+        else:
+            body["temperature"] = self._profile.get("temperature", 0.1)
+            max_tokens = self._profile.get("max_completion_tokens")
+            if max_tokens:
+                body["max_completion_tokens"] = int(max_tokens)
 
         resp = httpx.post(
             url,
